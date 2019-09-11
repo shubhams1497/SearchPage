@@ -1,24 +1,16 @@
 import React from 'react';
 import './App.css';
-import ProductCard from './ProductCard'
-import {connect} from 'react-redux';
+import ProductDisplay from './ProductDisplay';
 
 class App extends React.Component {
   render(){
 
-    const productsList = this.props.allProducts.map( (product) => <ProductCard key={product.id} productInfo={product}/> );
-    
     return (
-      <div className="product-container">
-        {productsList}
+      <div>
+        <ProductDisplay/>
       </div>
     );
   }
 }
 
-
-function mapStateToProps(state) {
-  return {allProducts: state}
-}
-
-export default connect(mapStateToProps)(App);
+export default App;

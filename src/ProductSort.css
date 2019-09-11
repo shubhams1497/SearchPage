@@ -1,0 +1,12 @@
+button.active{
+    background-color: blue;
+    color: white;
+}
+
+.sort-container{
+    width: 60%;
+    margin:20px auto;
+    /* border: 2px solid gray; */
+    display: flex;
+    flex-wrap: wrap;
+}
