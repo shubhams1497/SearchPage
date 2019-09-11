@@ -1,0 +1,23 @@
+.product-card{
+    width: 220px;
+    height: 250px;
+}
+
+.product-image img{
+    height: 60px;
+}
+
+.rating-widget span{
+    background-color: green; 
+    border-radius: 2px;
+}
+
+.rating-widget span img{
+    vertical-align: top;
+}
+
+.mrp-text{
+    text-decoration: line-through;
+    color: rgb(77, 72, 72);
+    margin: 0 5px;
+}
