@@ -27,10 +27,12 @@ function sortType( state="Relevance", action) {
 //     }
 // }
 
-function priceFilterRange(state=[],action){
+function priceFilterRange(state={values:[],range:{from:"Min",to:"Max"}},action){
     switch(action.type) {
         case "LOAD_PRICE_FILTER":
-            return action.priceFilter;
+            return {...state,values: action.priceFilter};
+        case "CHANGE_PRICE_FILTER":
+            return {...state,range:{from:action.from, to:action.to}};
         default:
             return state;
     }

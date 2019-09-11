@@ -23,7 +23,8 @@ fetch("https://api.myjson.com/bins/rnwle")
 
 
 
-// store.dispatch({type:"SORT",sortType:"descending"});
+// store.dispatch({type:"CHANGE_PRICE_FILTER",from:2000,to:4000});
+
 
 ReactDOM.render(<Provider store={store}> <App /> </Provider>,document.getElementById('root'));
 
