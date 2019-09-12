@@ -21,11 +21,38 @@ function sortProductList(list, sortType){
 
 }
 
+function priceInRange(price,from,to){
+    if(from === "Min")
+    {
+        from = Number.MIN_SAFE_INTEGER;
+    }
+
+    if(to === "Max")
+    {
+        to = Number.MAX_SAFE_INTEGER;
+    }
+
+    to = parseFloat(to);
+    from = parseFloat(from);
+
+    return (price>=from && price<=to);
+}
+
+
 class ProductDisplay extends React.Component{
 
     render(){
         const sortedProductList = sortProductList(this.props.allProducts,this.props.sortType);
-        const productsList = sortedProductList.map( (product) => <ProductCard key={product.id} productInfo={product}/> );
+        const filter={price:{from:this.props.priceRange.from,to:this.props.priceRange.to}};
+        function performFilters(product){
+            // console.log("filters",filter);
+            if(priceInRange(product.price.final_price,filter.price.from,filter.price.to)){
+                return true;
+            }
+            return false;
+        }
+        const filteredList = sortedProductList.filter(performFilters);
+        const productsList = filteredList.map( (product) => <ProductCard key={product.id} productInfo={product}/> );
         
         return(
             <div>
@@ -41,7 +68,7 @@ class ProductDisplay extends React.Component{
 
 
 function mapStateToProps(state) {
-    return {allProducts: state.allProducts, sortType: state.sortType}
+    return {allProducts: state.allProducts, sortType: state.sortType, priceRange: state.priceFilterRange.range}
 }
 
 export default connect(mapStateToProps)(ProductDisplay);

@@ -19,11 +19,16 @@ fetch("https://api.myjson.com/bins/16jqpu")
 
 fetch("https://api.myjson.com/bins/rnwle")
 .then((response) => (response.json()))
-.then( (data) => store.dispatch({type:"LOAD_PRICE_FILTER", priceFilter: data.filters[2].values}) )
+.then(
+    function(data){
+        store.dispatch({type:"LOAD_PRICE_FILTER", priceFilter: data.filters[2].values});
+        store.dispatch({type:"LOAD_BRANDS", brands: data.filters[0].values});
+    }
+);
 
 
 
-// store.dispatch({type:"CHANGE_PRICE_FILTER",from:2000,to:4000});
+// store.dispatch({type:"SET_BRAND",selectedBrand:"NIKE"});
 
 
 ReactDOM.render(<Provider store={store}> <App /> </Provider>,document.getElementById('root'));

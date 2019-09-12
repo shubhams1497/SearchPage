@@ -1,0 +1,13 @@
+ul.brand-suggested-list{
+    list-style: none;
+    margin: 0;
+    z-index: 10;
+    height: 120px;
+    overflow: scroll;
+    background-color:#ccc;
+    padding: 0px;
+}
+
+ul.brand-suggested-list li{
+    border: 1px solid white;
+}

@@ -38,7 +38,18 @@ function priceFilterRange(state={values:[],range:{from:"Min",to:"Max"}},action){
     }
 }
 
-const FinalApp = combineReducers({allProducts,sortType,priceFilterRange});
+function brandFilter(state={brands:[],selectedBrand:""},action) {
+    switch(action.type){
+        case "LOAD_BRANDS":
+            return {...state,brands:action.brands};
+        case "SET_BRAND":
+            return {...state,selectedBrand:action.selectedBrand};
+        default:
+            return state;
+    }
+}
+
+const FinalApp = combineReducers({allProducts,sortType,priceFilterRange,brandFilter});
 
 export default FinalApp;
 
