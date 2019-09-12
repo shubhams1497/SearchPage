@@ -23,12 +23,15 @@ fetch("https://api.myjson.com/bins/rnwle")
     function(data){
         store.dispatch({type:"LOAD_PRICE_FILTER", priceFilter: data.filters[2].values});
         store.dispatch({type:"LOAD_BRANDS", brands: data.filters[0].values});
+        store.dispatch({type:"LOAD_COLORS", colors: data.filters[1].values});
     }
 );
 
 
 
-// store.dispatch({type:"SET_BRAND",selectedBrand:"NIKE"});
+// store.dispatch({type:"ADD_COLOR",color:"black"});
+// console.log("hi");
+// store.dispatch({type:"REMOVE_COLOR",color:"green"});
 
 
 ReactDOM.render(<Provider store={store}> <App /> </Provider>,document.getElementById('root'));

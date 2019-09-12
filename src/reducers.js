@@ -49,7 +49,29 @@ function brandFilter(state={brands:[],selectedBrand:""},action) {
     }
 }
 
-const FinalApp = combineReducers({allProducts,sortType,priceFilterRange,brandFilter});
+function toggleColor(selectedColors,color){
+    let nwSet = new Set(selectedColors);
+    if(nwSet.has(color)){
+        nwSet.delete(color);
+    }
+    else{
+        nwSet.add(color);
+    }
+    return nwSet;
+}
+
+function colorFilter(state={colors:[],selectedColors:new Set()}, action){
+    switch(action.type){
+        case "LOAD_COLORS":
+            return {...state,colors:action.colors}
+        case "TOGGLE_COLOR":
+            return {...state,selectedColors:toggleColor(state.selectedColors,action.color)};
+        default:
+            return state;
+    }
+}
+
+const FinalApp = combineReducers({allProducts,sortType,priceFilterRange,brandFilter,colorFilter});
 
 export default FinalApp;
 

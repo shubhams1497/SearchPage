@@ -53,7 +53,6 @@ class BrandFilter extends React.Component{
                 <input onChange={this.handleChange} value={this.state.brandInputValue} placeholder="Search Brand"/>
                 <BrandList inputValue={this.state.brandInputValue} brandFilter={this.props.brandFilter} 
                 changeStateOfInput={this.changeStateOfInput} onChange={this.props.onChange}/>
-                <h5>HELLO</h5>
             </div>
         );
     }

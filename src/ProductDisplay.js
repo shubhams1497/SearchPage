@@ -43,10 +43,16 @@ class ProductDisplay extends React.Component{
 
     render(){
         const sortedProductList = sortProductList(this.props.allProducts,this.props.sortType);
-        const filter={price:{from:this.props.priceRange.from,to:this.props.priceRange.to}, selectedBrand: this.props.selectedBrand };
+        const filter = { 
+                    price: {from:this.props.priceRange.from,to:this.props.priceRange.to}, 
+                    selectedBrand: this.props.selectedBrand,
+                    selectedColors: this.props.selectedColors
+                };
         function performFilters(product){
             // console.log("filters",filter);
-            if(priceInRange(product.price.final_price,filter.price.from,filter.price.to) && ((!filter.selectedBrand)||(product.brand === filter.selectedBrand)) ){
+            if( priceInRange(product.price.final_price,filter.price.from,filter.price.to) && 
+            ( (!filter.selectedBrand) || (product.brand === filter.selectedBrand) ) &&
+            ( (filter.selectedColors.size === 0) || filter.selectedColors.has(product.colour.title) ) ){
                 return true;
             }
             return false;
@@ -69,7 +75,8 @@ class ProductDisplay extends React.Component{
 
 function mapStateToProps(state) {
     return {allProducts: state.allProducts, sortType: state.sortType, 
-        priceRange: state.priceFilterRange.range, selectedBrand:state.brandFilter.selectedBrand}
+        priceRange: state.priceFilterRange.range, selectedBrand:state.brandFilter.selectedBrand,
+        selectedColors: state.colorFilter.selectedColors}
 }
 
 export default connect(mapStateToProps)(ProductDisplay);

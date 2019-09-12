@@ -1,0 +1,14 @@
+.color-selector{
+    display: flex;
+}
+
+.color-selector input{
+    margin: auto 10px;
+}
+
+.color-selector .solid-circle{
+    height:14px;
+    width:14px;
+    border-radius: 50%; 
+    margin: auto 5px;
+}
