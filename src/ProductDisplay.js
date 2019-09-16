@@ -51,7 +51,7 @@ class ProductDisplay extends React.Component{
         function performFilters(product){
             // console.log("filters",filter);
             if( priceInRange(product.price.final_price,filter.price.from,filter.price.to) && 
-            ( (!filter.selectedBrand) || (product.brand === filter.selectedBrand) ) &&
+            ( (!filter.selectedBrand) || (product.brand === filter.selectedBrand.toLowerCase()) ) &&
             ( (filter.selectedColors.size === 0) || filter.selectedColors.has(product.colour.title) ) ){
                 return true;
             }
@@ -62,7 +62,7 @@ class ProductDisplay extends React.Component{
         
         return(
             <div className="product-display-container">
-                <h3 className={"number-of-results"}>Showing {productsList.length} results for "shoes"</h3>
+                <h3 className={"number-of-results"}>Showing {productsList.length} results for "shoes" </h3>
                 <ProductSort/>
                 <div className="product-container">
                     {productsList}

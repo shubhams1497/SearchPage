@@ -2,4 +2,6 @@
     display: flex;
     width: 100%;
     flex-wrap: wrap;
+    /* background-color: white; */
+    justify-content: space-between;
 }

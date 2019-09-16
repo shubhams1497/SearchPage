@@ -1,0 +1,29 @@
+.cart-container{
+    position: fixed;
+    right:0px;
+    top:0px;
+    z-index: 2;
+    display: flex;
+    flex-flow: column;
+    transform-origin: top;
+    transform: scale(0.3);
+    background-color: #ccc;
+    border: 2px solid #ccc;
+}
+
+.cart-container:hover{
+    transform: scale(0.8);
+}
+
+.cart-products-list{
+    display: flex;
+    flex-flow: column;
+    background-color: white;
+    max-height: 600px;
+    overflow: scroll;
+    /* padding: 15px; */
+}
+
+.cart-container .product-card{
+    margin:20px;
+}

@@ -1,3 +1,7 @@
 .price-filter{
     display: flex;
 }
+
+.price-filter h4{
+    margin: 0 10px;
+}

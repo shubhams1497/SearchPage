@@ -1,16 +1,53 @@
 import React from 'react';
 import './ProductCard.css'
+import { connect } from 'react-redux';
 
 function RatingWidget(props){
     return (
         <div className="rating-widget">
-            <span>{props.rating}<img width={"15px"} height={"15px"} alt="star-icon" src={require('./star.svg')}/></span>
+            <span>{props.rating.toFixed(1)}<img width={"15px"} height={"15px"} alt="star-icon" src={require('./star.svg')}/></span>
         </div>
     );
 }
 
+class AddBasketButton extends React.Component{
 
-export default class ProductCard extends React.Component{
+    render(){
+
+        return(
+            <div>
+                { (this.props.productCounter === 0)?
+                <button onClick={() => this.props.incrementCount(this.props.productId)}>ADD</button>:
+                <div>
+                    <button onClick={() => this.props.decrementCount(this.props.productId)}>-</button>
+                    {this.props.productCounter}
+                    <button onClick={() => this.props.incrementCount(this.props.productId)}>+</button>
+                </div>
+                }
+            </div>
+        );
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+        incrementCount: (productId) => dispatch({type:"INC_COUNTER",productId: productId}),
+        decrementCount: (productId) => dispatch({type:"DEC_COUNTER",productId: productId})
+    }
+}
+
+let AddBasketButtonWrapper = connect(null,mapDispatchToProps)(AddBasketButton);
+
+
+export default  class ProductCard extends React.Component{
+
+    trimText(text){
+        if(text.length < 26){
+            return text;
+        }
+
+        return (`${text.slice(0,26)}...`);
+    }
 
     render(){
         return(
@@ -18,7 +55,7 @@ export default class ProductCard extends React.Component{
                 <div className="product-image">
                     <img alt={"product"} src={this.props.productInfo.image}/>
                 </div>
-                <p>{this.props.productInfo.title}</p>
+                <p className="product-title">{this.trimText(this.props.productInfo.title)}</p>
                 <RatingWidget rating={this.props.productInfo.rating}/>
                 <p>
                     <span>
@@ -35,8 +72,9 @@ export default class ProductCard extends React.Component{
                         {this.props.productInfo.discount}{"% Off"}</span>:""
                     }
                 </p>
+                <AddBasketButtonWrapper productCounter={this.props.productInfo.counter} productId={this.props.productInfo.id}/>
             </div>
         );
     }
-
 }
+

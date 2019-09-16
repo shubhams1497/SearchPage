@@ -1,11 +1,24 @@
 .product-card{
-    width: 220px;
-    height: 250px;
+    width:  300px;
+    height: 350px; 
+    cursor: pointer;
 }
 
-.product-image img{
-    height: 60px;
+.product-card:hover{
+    transform-origin: center;
+    transform: scale(1.05);
+    z-index: 3;
 }
+
+
+.product-image img{
+    height: 100px;
+}
+
+/* .product-card .product-title{
+    height: 50px;
+} */
+
 
 .rating-widget span{
     background-color: green; 

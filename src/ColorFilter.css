@@ -1,9 +1,14 @@
 .color-selector{
     display: flex;
+    cursor: pointer;
 }
 
 .color-selector input{
     margin: auto 10px;
+}
+
+.color-selector p{
+    margin: 10px;
 }
 
 .color-selector .solid-circle{

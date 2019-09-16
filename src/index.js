@@ -15,7 +15,7 @@ store.subscribe(()=> Render());
 
 fetch("https://api.myjson.com/bins/16jqpu")
 .then( (response) => (response.json()))
-.then( (data) => store.dispatch({type:"LOAD_DATA", data: data.products}) )
+.then( (data) => store.dispatch({type:"LOAD_DATA", data: data.products.map((product) => ({...product,counter:0}) )}) )
 
 fetch("https://api.myjson.com/bins/rnwle")
 .then((response) => (response.json()))
@@ -29,7 +29,6 @@ fetch("https://api.myjson.com/bins/rnwle")
 
 
 
-// store.dispatch({type:"ADD_COLOR",color:"black"});
 // console.log("hi");
 // store.dispatch({type:"REMOVE_COLOR",color:"green"});
 

@@ -1,9 +1,41 @@
 import { combineReducers} from 'redux';
 
+
+function incrementCounter(state,productId){
+    console.log(productId);
+    let nwState = [...state];
+    for(let i=0; i< nwState.length ;i++){
+        if(nwState[i].id === productId){
+            nwState[i].counter = nwState[i].counter+1;
+            
+            break;
+        }
+    }
+    return nwState;
+}
+
+function decrementCounter(state,productId){
+    console.log(productId);
+    let nwState = [...state];
+    for(let i=0; i< nwState.length ;i++){
+        if(nwState[i].id === productId){
+            nwState[i].counter = nwState[i].counter-1;
+            break;
+        }
+    }
+    return nwState;
+}
+
+
+
 function allProducts( state=[], action) {
     switch(action.type) {
         case "LOAD_DATA":
             return action.data;
+        case "INC_COUNTER":
+            return incrementCounter(state,action.productId);
+        case "DEC_COUNTER":
+            return decrementCounter(state,action.productId);
         default:
             return state;
     }
