@@ -12,7 +12,7 @@ class PriceFilter extends React.Component{
         const priceOptions1 = priceFilterValues.slice(0,priceFilterValues.length-1).map( (item) => createOption(item))
         const priceOptions2 = priceFilterValues.slice(1,priceFilterValues.length).map( (item) => createOption(item))
         return(
-            <div >
+            <div>
                 <h5>PRICE</h5>
                 <div className="price-filter">
                     <select onChange={(e)=>this.props.changeFilter(e.target.value,this.props.priceFilterRange.range.to)} 

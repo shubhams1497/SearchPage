@@ -1,12 +1,16 @@
 .product-container{
-    width: 60%;
+    /* width: 60%; */
     margin:auto;
     /* border: 2px solid gray; */
     display: flex;
     flex-wrap: wrap;
 }
 
+.product-display-container{
+  flex:3;
+}
+
 .number-of-results{
-  width: 60%;
+  /* width: 60%; */
   margin: 10px auto; 
 }

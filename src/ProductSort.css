@@ -4,7 +4,7 @@ button.active{
 }
 
 .sort-container{
-    width: 60%;
+    /* width: 60%; */
     margin:20px auto;
     /* border: 2px solid gray; */
     display: flex;

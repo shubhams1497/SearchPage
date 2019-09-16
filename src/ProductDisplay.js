@@ -61,7 +61,7 @@ class ProductDisplay extends React.Component{
         const productsList = filteredList.map( (product) => <ProductCard key={product.id} productInfo={product}/> );
         
         return(
-            <div>
+            <div className="product-display-container">
                 <h3 className={"number-of-results"}>Showing {productsList.length} results for "shoes"</h3>
                 <ProductSort/>
                 <div className="product-container">
