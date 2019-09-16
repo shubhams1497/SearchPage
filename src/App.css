@@ -5,3 +5,13 @@
     /* background-color: white; */
     justify-content: space-between;
 }
+
+.blur-background{
+    position: fixed;
+    top:0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(221, 221, 221, 0.608);
+    z-index: 2;
+}
