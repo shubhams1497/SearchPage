@@ -12,6 +12,8 @@ class CartDisplay extends React.Component{
             cartVisible: false,
         };
         this.toggleCartVisibility = this.toggleCartVisibility.bind(this);
+        this.leftScrollList = this.leftScrollList.bind(this);
+        this.rightScrollList = this.rightScrollList.bind(this);
     }
 
     toggleCartVisibility(){
@@ -59,6 +61,15 @@ class CartDisplay extends React.Component{
         return {available:false};
     }
 
+    leftScrollList(){
+        this.refs.listRef.scrollBy(-500,0);
+    }
+
+    rightScrollList(){
+        this.refs.listRef.scrollBy(500,0);
+    }
+
+
     render(){
         const cartItems = this.props.allProducts.filter((product) => (product.counter>0));
         const cartItemsList = cartItems.map((product) => <ProductCard key={product.id} productInfo={product}/>)
@@ -69,7 +80,11 @@ class CartDisplay extends React.Component{
         const totalAmount = this.calculateTotalAmount(cartItems);
         const discount = this.calculateDiscount(totalAmount);
         const suggestedOffer = this.calculateSuggestedOffer(totalAmount);
-                        
+        let scrollButtonsVisible = false;
+        if(cartItems.length>2){
+            scrollButtonsVisible = true;
+        }
+        
         return(
             <div className="cart-wrapper">
                 <div onClick={()=> this.toggleCartVisibility()} className="cart-icon-wrapper">
@@ -78,28 +93,44 @@ class CartDisplay extends React.Component{
                 </div>
                 <div style={cartStyle} className="cart-container">
                     <h4>Cart Items</h4>
-                    <div className="cart-products-list">
-                        {(cartItemsList.length>0)?cartItemsList:"Empty Cart!!"}
+                    <div onClick={this.leftScrollList} style={{visibility:(scrollButtonsVisible)?'visible':'hidden'}} 
+                        className="left-scroll-button">
                     </div>
-                    <div className="bottom-cart-section">
-                        <div className="amounts-display">
-                            <div className="total-amount">
-                                Total Amount = <span><img height="12px" alt={"rupee"} src={require('./rupee.png')}/>{totalAmount}</span>
-                            </div>
-                            <div className="discount-amount">
-                                Discount = <span><img height="12px" alt={"rupee"} src={require('./rupee.png')}/>{discount}</span>
-                            </div>
-                            <div className="final-amount">
-                                Final Amount = <span><img height="12px" alt={"rupee"} src={require('./rupee.png')}/>{totalAmount-discount}</span>
+                    <div onClick={this.rightScrollList} style={{visibility:(scrollButtonsVisible)?'visible':'hidden'}} 
+                        className="right-scroll-button">
+                    </div>
+                    {(cartItems.length>0)?
+                    <div>
+                        <div className="cart-products-list-container">
+                            <div ref={"listRef"} className="cart-products-list">
+                                {cartItemsList}
                             </div>
                         </div>
-                        <div className="offers-suggestions">
-                            {(suggestedOffer.available)?
-                            `Add rs ${suggestedOffer.amount} items to get ${suggestedOffer.discount}`:
-                            "Congrats!! You availed maximum discount."
-                            }
-                        </div>
-                    </div> 
+                        <div className="bottom-cart-section">
+                            <div className="amounts-display">
+                                <div className="total-amount">
+                                    Total Amount = <span><img height="12px" alt={"rupee"} src={require('./rupee.png')}/>{totalAmount}</span>
+                                </div>
+                                <div className="discount-amount">
+                                    Discount = <span><img height="12px" alt={"rupee"} src={require('./rupee.png')}/>{discount}</span>
+                                </div>
+                                <div className="final-amount">
+                                    Final Amount = <span><img height="12px" alt={"rupee"} src={require('./rupee.png')}/>{totalAmount-discount}</span>
+                                </div>
+                            </div>
+                            <div className="offers-suggestions">
+                                {(suggestedOffer.available)?
+                                `Add rs ${suggestedOffer.amount} items to get ${suggestedOffer.discount}`:
+                                "Congrats!! You availed maximum discount."
+                                }
+                            </div>
+                        </div> 
+                    </div>:
+                    <div className="empty-cart-message">
+                        <p>Please Add Some Item To Cart</p>
+                        <img height="150px" alt="cart-icon" src={require('./bag.svg')}/>
+                    </div>
+                    }
                 </div>
             </div>
         );
