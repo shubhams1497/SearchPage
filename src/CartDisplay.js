@@ -19,12 +19,57 @@ class CartDisplay extends React.Component{
         this.props.toggleBlurVisibility();
     }
 
+    calculateTotalAmount(cartItems){
+        let totalAmount = 0;
+        for(var product of cartItems){
+            totalAmount += product.counter*(product.price.final_price);
+        }
+
+        return totalAmount;
+    }
+
+    calculateDiscount(amount){
+        if(amount < 500) {
+            return 0;
+        }
+        else if(amount >= 500 && amount < 1000) {
+            return parseInt(amount*0.05);
+        }
+        else if(amount >= 1000 && amount < 2000){
+            return parseInt(amount*0.1);
+        }
+
+        return parseInt(Math.min(amount*0.2,500));
+    }
+
+    calculateSuggestedOffer(totalAmount){
+
+        if(totalAmount< 500){
+            return {available: true, amount: (500-totalAmount), discount: "5% off"}
+        }
+        if(totalAmount >= 500 && totalAmount < 1000)
+        {
+            return {available:true, amount:(1000-totalAmount), discount: "10% off"}
+        }
+        if(totalAmount >= 1000 && totalAmount < 2000)
+        {
+            return {available:true, amount:(2000-totalAmount), discount: "20% off upto maximum of rs 500"}
+        }
+
+        return {available:false};
+    }
+
     render(){
         const cartItems = this.props.allProducts.filter((product) => (product.counter>0));
         const cartItemsList = cartItems.map((product) => <ProductCard key={product.id} productInfo={product}/>)
         const cartStyle = (this.state.cartVisible)?
                         {transform: "scale(1)"}:
                         {transform: "scale(0)"}
+        
+        const totalAmount = this.calculateTotalAmount(cartItems);
+        const discount = this.calculateDiscount(totalAmount);
+        const suggestedOffer = this.calculateSuggestedOffer(totalAmount);
+                        
         return(
             <div className="cart-wrapper">
                 <div onClick={()=> this.toggleCartVisibility()} className="cart-icon-wrapper">
@@ -36,9 +81,25 @@ class CartDisplay extends React.Component{
                     <div className="cart-products-list">
                         {(cartItemsList.length>0)?cartItemsList:"Empty Cart!!"}
                     </div>
-                    <div className="total-amount">
-                        Total Amount;
-                    </div>
+                    <div className="bottom-cart-section">
+                        <div className="amounts-display">
+                            <div className="total-amount">
+                                Total Amount = <span><img height="12px" alt={"rupee"} src={require('./rupee.png')}/>{totalAmount}</span>
+                            </div>
+                            <div className="discount-amount">
+                                Discount = <span><img height="12px" alt={"rupee"} src={require('./rupee.png')}/>{discount}</span>
+                            </div>
+                            <div className="final-amount">
+                                Final Amount = <span><img height="12px" alt={"rupee"} src={require('./rupee.png')}/>{totalAmount-discount}</span>
+                            </div>
+                        </div>
+                        <div className="offers-suggestions">
+                            {(suggestedOffer.available)?
+                            `Add rs ${suggestedOffer.amount} items to get ${suggestedOffer.discount}`:
+                            "Congrats!! You availed maximum discount."
+                            }
+                        </div>
+                    </div> 
                 </div>
             </div>
         );

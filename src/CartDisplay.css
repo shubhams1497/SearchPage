@@ -18,10 +18,10 @@
     position: absolute;
     top:70px;
     right:90px;
-    height:400px;
+    height:500px;
     width: 800px;
     transform-origin: top right;
-    transition: all .4s ease;
+    transition: all .3s ease;
     /* transform: scale(0); */
     background-color: #ccc;
     border: 2px solid #ccc;
@@ -32,8 +32,7 @@
     overflow: scroll;
     max-width: 800px;
     background-color: white;
-    max-height: 600px;
-    overflow: scroll;
+    max-height: 400px;
     /* padding: 15px; */
 }
 
@@ -51,4 +50,9 @@
     font-size: 20px; 
     font-weight: 500;
     background-color: red;
+}
+
+.bottom-cart-section{
+    display: flex;
+    justify-content: space-between; 
 }
