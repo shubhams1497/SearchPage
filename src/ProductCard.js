@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 function RatingWidget(props){
     return (
         <div className="rating-widget">
-            <span>{props.rating.toFixed(1)}<img width={"15px"} height={"15px"} alt="star-icon" src={require('./star.svg')}/></span>
+            <span>{props.rating.toFixed(1)}</span>
+            <img width={"15px"} height={"15px"} alt="star-icon" src={require('./star3.png')}/>
         </div>
     );
 }
@@ -15,10 +16,10 @@ class AddBasketButton extends React.Component{
     render(){
 
         return(
-            <div>
+            <div className="add-basket-button">
                 { (this.props.productCounter === 0)?
                 <button onClick={() => this.props.incrementCount(this.props.productId)}>ADD</button>:
-                <div>
+                <div className="change-quantity-buttons">
                     <button onClick={() => this.props.decrementCount(this.props.productId)}>-</button>
                     {this.props.productCounter}
                     <button onClick={() => this.props.incrementCount(this.props.productId)}>+</button>
@@ -60,7 +61,7 @@ export default  class ProductCard extends React.Component{
                 <p>
                     <span>
                         <img alt={"rupee"} height={"13px"} src={require('./rupee.png')} />
-                        {this.props.productInfo.price.final_price}
+                        {this.props.productInfo.price.final_price+" "}
                     </span>
                     {
                     (this.props.productInfo.price.mrp)?<span className="mrp-text">
@@ -69,7 +70,7 @@ export default  class ProductCard extends React.Component{
                     }
                     {
                     (this.props.productInfo.discount)?<span className="discount-text">
-                        {this.props.productInfo.discount}{"% Off"}</span>:""
+                        {this.props.productInfo.discount}{"%Off"}</span>:""
                     }
                 </p>
                 <AddBasketButtonWrapper productCounter={this.props.productInfo.counter} productId={this.props.productInfo.id}/>

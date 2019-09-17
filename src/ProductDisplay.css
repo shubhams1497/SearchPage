@@ -8,12 +8,13 @@
 
 .product-display-container{
   /* flex:3; */
-  width:76%;
+  width:78%;
   background-color: white;
-  padding: 0 15px;
+  /* padding: 0 15px; */
 }
 
 .number-of-results{
   /* width: 60%; */
-  margin: 10px auto; 
+  margin: 10px 15px; 
+
 }

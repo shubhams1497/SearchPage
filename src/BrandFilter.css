@@ -4,13 +4,31 @@ ul.brand-suggested-list{
     position: absolute;
     z-index: 10;
     height: 120px;
-    width: 180px;
+    width: 272px;
     overflow: scroll;
-    background-color:#ccc;
+    /* background-color:#353535; */
     padding: 0px;
     cursor: pointer;
 }
 
 ul.brand-suggested-list li{
-    border: 1px solid white;
+    border: 1px solid #060606;
+    color: #e6e3e3e0;
+    background-color:#353535;
+}
+
+.brand-filter-container{
+    margin: 0px 15px;
+}
+
+.brand-filter-container .search-box input{
+    border: none;
+    outline: none;
+    font-size: 16px; 
+    margin-left: 4px; 
+    width: 85%;
+}
+
+.brand-filter-container .search-box{
+    border-bottom: 3px solid #bbb;
 }

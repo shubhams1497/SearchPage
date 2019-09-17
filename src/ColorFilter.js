@@ -34,7 +34,7 @@ class ColorFilter extends React.Component{
         const colorList = this.props.colors.map((color) => 
             <ColorSelect key={color.title} toggleColor={this.props.toggleColor} color={color}/>);
         return(
-            <div>
+            <div className="color-filter-container">
                 <h5>COLOR</h5>
                 {colorList}
             </div>

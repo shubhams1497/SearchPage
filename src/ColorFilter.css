@@ -1,6 +1,7 @@
 .color-selector{
     display: flex;
     cursor: pointer;
+    margin-left: 6px;
 }
 
 .color-selector input{
@@ -16,4 +17,13 @@
     width:14px;
     border-radius: 50%; 
     margin: auto 5px;
+}
+
+.color-filter-container{
+    margin-top: 20px;
+    border-top: 2px solid #dcdcdc;
+}
+
+.color-filter-container h5{
+    margin-left: 15px;
 }

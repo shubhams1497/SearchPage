@@ -53,9 +53,12 @@ class BrandFilter extends React.Component{
 
     render(){
         return(
-            <div>
+            <div className="brand-filter-container">
                 <h5>BRANDS</h5>
-                <input onChange={this.handleChange} value={this.state.brandInputValue} placeholder="Search Brand"/>
+                <div className="search-box">
+                    <span><img height="13px" src={require('./search.svg')} alt={"search-icon"}/></span>
+                    <input onChange={this.handleChange} value={this.state.brandInputValue} placeholder="Search Brand"/>
+                </div>
                 <BrandList listVisible={this.state.listVisible} setListVisibility={this.setListVisibility} inputValue={this.state.brandInputValue} brandFilter={this.props.brandFilter} 
                 changeStateOfInput={this.changeStateOfInput} onChange={this.props.onChange}/>
             </div>

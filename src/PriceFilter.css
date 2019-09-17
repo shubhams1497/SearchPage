@@ -1,7 +1,18 @@
 .price-filter{
     display: flex;
+    margin-left: 15px;
 }
 
 .price-filter h4{
     margin: 0 10px;
+}
+
+.price-filter-container{
+    border-top: 2px solid #dcdcdc;
+    border-bottom: 2px solid #dcdcdc;
+    padding-bottom: 20px; 
+}
+
+.price-filter-container h5{
+    margin-left: 15px;
 }

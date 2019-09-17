@@ -1,7 +1,11 @@
 .product-filters-container{
     /* flex:1; */
-    width: 18%;
+    width: 19%;
     background-color: white;
-    padding: 0 15px; 
-    height: 750px;
+    /* padding: 0 15px;  */
+    height: 800px;
+}
+
+.product-filters-container h3{
+    margin-left: 15px; 
 }

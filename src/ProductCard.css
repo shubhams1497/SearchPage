@@ -2,6 +2,7 @@
     width:  300px;
     height: 350px; 
     cursor: pointer;
+    margin-left: 15px; 
 }
 
 .product-card:hover{
@@ -10,6 +11,10 @@
     /* z-index: 3; */
 }
 
+.discount-text{
+    color: green;
+    font-size: 14px;
+}
 
 .product-image img{
     height: 100px;
@@ -19,18 +24,43 @@
     height: 50px;
 } */
 
-
-.rating-widget span{
-    background-color: green; 
-    border-radius: 2px;
+.rating-widget{
+    display: flex;
+    background-color: green;
+    width: 40px;
+    border-radius: 3px;
+    padding: 2px;
 }
 
-.rating-widget span img{
-    vertical-align: top;
+.rating-widget span{
+    color: white; 
+}
+
+.rating-widget img{
+    background-color: green;
 }
 
 .mrp-text{
     text-decoration: line-through;
     color: rgb(77, 72, 72);
     margin: 0 5px;
+}
+
+.add-basket-button{
+    float: right;
+    margin-right: 15px;
+}
+
+.add-basket-button button{
+    background-color: rgb(73, 73, 248);
+    color: #fff;
+    font-size: 15px;
+    padding: 5px 20px;
+    outline:none;
+    cursor: pointer;
+}
+
+
+.change-quantity-buttons button{
+    padding: 5px 10px;
 }
