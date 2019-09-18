@@ -62,11 +62,11 @@ class CartDisplay extends React.Component{
     }
 
     leftScrollList(){
-        this.refs.listRef.scrollBy(-500,0);
+        this.refs.listRef.scrollBy(-800,0);
     }
 
     rightScrollList(){
-        this.refs.listRef.scrollBy(500,0);
+        this.refs.listRef.scrollBy(800,0);
     }
 
 
@@ -81,7 +81,7 @@ class CartDisplay extends React.Component{
         const discount = this.calculateDiscount(totalAmount);
         const suggestedOffer = this.calculateSuggestedOffer(totalAmount);
         let scrollButtonsVisible = false;
-        if(cartItems.length>2){
+        if(cartItems.length>=1){
             scrollButtonsVisible = true;
         }
         
