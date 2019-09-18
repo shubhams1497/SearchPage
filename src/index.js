@@ -10,8 +10,11 @@ const store = createStore(FinalApp);
 
 console.log(store.getState());
 
-store.subscribe(()=> Render());
+store.subscribe(()=> DisplayStore());
 
+function DisplayStore(){
+    console.log(store.getState());
+}
 
 fetch("https://api.myjson.com/bins/16jqpu")
 .then( (response) => (response.json()))
@@ -35,6 +38,3 @@ fetch("https://api.myjson.com/bins/rnwle")
 
 ReactDOM.render(<Provider store={store}> <App /> </Provider>,document.getElementById('root'));
 
-function Render(){
-    console.log(store.getState());
-}

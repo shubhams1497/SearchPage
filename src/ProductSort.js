@@ -8,11 +8,11 @@ class ProductSort extends React.Component{
         return(
             <div className="sort-container">
                 <span>Sort By</span>
-                <button className={(this.props.sortType==="Relevance")?"active":null} 
+                <button className={(this.props.sortType==="Relevance")?"active":"default"} 
                 onClick={()=>this.props.applySort("Relevance")}>Relevance</button>  
-                <button className={(this.props.sortType==="Ascending")?"active":null} 
+                <button className={(this.props.sortType==="Ascending")?"active":"default"} 
                 onClick={()=>this.props.applySort("Ascending")}>Price-Low to High</button>  
-                <button className={(this.props.sortType==="Descending")?"active":null} 
+                <button className={(this.props.sortType==="Descending")?"active":"default"} 
                 onClick={()=>this.props.applySort("Descending")}>Price-High to low</button>  
             </div>
         );
