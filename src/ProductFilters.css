@@ -9,3 +9,8 @@
 .product-filters-container h3{
     margin-left: 15px; 
 }
+
+.loading-indicator{
+    text-align: center;
+    margin: auto;
+}

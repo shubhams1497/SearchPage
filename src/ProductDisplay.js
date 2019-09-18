@@ -1,8 +1,10 @@
 import React from 'react';
-import ProductCard from './ProductCard'
+import ProductCard from './ProductCard';
 import {connect} from 'react-redux';
-import './ProductDisplay.css'
+import './ProductDisplay.css';
 import ProductSort from './ProductSort';
+import {fetchingProductsData} from './index.js';
+import ProductLoadingIndicator from './LoadingIndicator';
 
 
 
@@ -39,7 +41,20 @@ function priceInRange(price,from,to){
 }
 
 
+
 class ProductDisplay extends React.Component{
+
+    constructor(props){
+        super(props);
+        this.state={
+            isLoaded: false,
+        };
+    }
+
+    componentDidMount(){
+        fetchingProductsData()
+        .then(() => this.setState({isLoaded: true}));
+    }
 
     render(){
         const sortedProductList = sortProductList(this.props.allProducts,this.props.sortType);
@@ -62,11 +77,16 @@ class ProductDisplay extends React.Component{
         
         return(
             <div className="product-display-container">
-                <h3 className={"number-of-results"}>Showing {productsList.length} results for "shoes" </h3>
-                <ProductSort/>
-                <div className="product-container">
-                    {productsList}
-                </div>
+                {(this.state.isLoaded)?
+                <>    
+                    <h3 className={"number-of-results"}>Showing {productsList.length} results for "shoes" </h3>
+                    <ProductSort/>
+                    <div className="product-container">
+                        {productsList}
+                    </div>
+                </>:
+                <ProductLoadingIndicator/>
+                }
             </div>
         );
     }

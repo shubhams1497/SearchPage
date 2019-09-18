@@ -16,20 +16,26 @@ function DisplayStore(){
     console.log(store.getState());
 }
 
-fetch("https://api.myjson.com/bins/16jqpu")
-.then( (response) => (response.json()))
-.then( (data) => store.dispatch({type:"LOAD_DATA", data: data.products.map((product) => ({...product,counter:0}) )}) )
+export function fetchingProductsData(){
 
-fetch("https://api.myjson.com/bins/rnwle")
-.then((response) => (response.json()))
-.then(
-    function(data){
+    return fetch("https://api.myjson.com/bins/16jqpu")
+    .then( (response) => (response.json()))
+    .then( (data) => store.dispatch({type:"LOAD_DATA", data: data.products.map((product) => ({...product,counter:0}) )}) )
+    .then(()=>console.log("products data loaded succesfully!"));
+}
+
+export function fetchingFiltersData(){
+
+    return fetch("https://api.myjson.com/bins/rnwle")
+    .then((response) => (response.json()))
+    .then(
+        function(data){
         store.dispatch({type:"LOAD_PRICE_FILTER", priceFilter: data.filters[2].values});
         store.dispatch({type:"LOAD_BRANDS", brands: data.filters[0].values});
         store.dispatch({type:"LOAD_COLORS", colors: data.filters[1].values});
-    }
-);
-
+    }) 
+    .then(()=>console.log("filter data loaded succesfully!"));      
+}
 
 
 // console.log("hi");
